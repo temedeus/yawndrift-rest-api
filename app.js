@@ -1,12 +1,13 @@
 const express = require("express");
 const morgan = require("morgan");
-const mongoose = require("mongoose");
+//const mongoose = require("mongoose");
 require("dotenv").config();
 
 const app = express();
 
 const PORT = process.env.PORT || 5000;
-
+const ghostrouter = require('./routes/ghostrouter');
+/*
 mongoose
     .connect(process.env.MONGO_URL, {
         useNewUrlParser: true, useUnifiedTopology: true,
@@ -15,16 +16,23 @@ mongoose
 }).catch((err) => {
     console.error('Error connecting to database!', err);
 });
-
-app.use(express.json);
+*/
+app.use(express.json());
 app.use(morgan("dev"));
+app.use(
+    express.urlencoded({
+        extended: true,
+    })
+);
 
-app.get("ping", (req, res) => {
+app.use("/ghost", ghostrouter);
+
+app.get("/ping", (req, res) => {
     return res.send({
         status: "Healthy",
     });
 });
 
-app.listen(() => {
+app.listen(PORT, () => {
     console.log("Server started listening on port : ", PORT);
 });
