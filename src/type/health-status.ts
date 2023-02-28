@@ -1,0 +1,4 @@
+export enum HealthStatus {
+    HEALTHY= "HEALTHY",
+    DEPENDENT_SERVICES_DOWN = "DEPENDENT_SERVICES_DOWN"
+}
