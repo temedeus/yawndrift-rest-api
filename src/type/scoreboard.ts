@@ -4,11 +4,14 @@ export type Scoreboard = {
 }
 
 export type Score = {
+    track: string,
     playerNickname: string,
-    totalTime: Date,
+    startTime: Date,
+    endTime: Date,
     milestones: Milestone[]
 }
 
+// "step" starts from 1 as these values are used for display.
 export type Milestone = {
     time: Date
     step: number
