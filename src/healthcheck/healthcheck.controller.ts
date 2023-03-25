@@ -5,7 +5,7 @@ import { HealthcheckService } from './healthcheck.service';
 export class HealthcheckController {
   constructor(private readonly appService: HealthcheckService) {}
 
-  @Get("/health-check")
+  @Get("/")
   getHealthStatus(): string {
     return this.appService.getHealthStatus();
   }
