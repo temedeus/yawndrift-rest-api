@@ -1,0 +1,42 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Player {
+  id                Int         @id @default(autoincrement())
+  email             String      @unique
+  playerNickname    String      @unique
+  milestones        Scoreboard[]
+}
+
+model Track {
+  id                Int         @id @default(autoincrement())
+  name              String      @unique
+  milestones  Scoreboard[]
+}
+
+model Scoreboard {
+  id          Int            @default(autoincrement()) @id
+  player      Player?        @relation(fields: [playerId], references: [id])
+  playerId    Int
+  track       Track?         @relation(fields: [trackId], references: [id])
+  trackId     Int
+  endTime     DateTime
+  milestones  Milestone[]
+}
+
+model Milestone {
+  id            Int      @default(autoincrement()) @id
+  time          DateTime
+  step          Int
+  scoreboard    Scoreboard?    @relation(fields: [scoreboardId], references: [id])
+  scoreboardId  Int
+}
+
+
+
