@@ -7,12 +7,12 @@ export class ScoreboardController {
   constructor(private readonly scoreboardService: ScoreboardService) {}
 
   @Get('scoreboard/:id')
-  async getPostById(@Param('id') id: string): Promise<Scoreboard> {
+  async getScoreboard(@Param('id') id: string): Promise<Scoreboard> {
     return this.scoreboardService.scoreboard({ id: Number(id) });
   }
 
   @Get('scoreboard/by-track/:trackId')
-  async getPublishedPosts(@Param('trackId') trackId: string): Promise<Scoreboard[]> {
+  async getScoreboards(@Param('trackId') trackId: string): Promise<Scoreboard[]> {
     return this.scoreboardService.scoreboards({
       where: { trackId: Number(trackId) },
     });
