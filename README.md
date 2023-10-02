@@ -2,7 +2,7 @@
 
 Yawndrift REST API provides scoreboard and result information for upcoming game Yawndrift.
 
-API is made using Node.js and nest.js.
+API is made using Node.js, prisma and nest.js.
 
 ## Installation
 
